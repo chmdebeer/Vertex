@@ -301,7 +301,7 @@ static void lcd_main_menu()
     if (movesplanned() || IS_SD_PRINTING)
     {    }
     else{
-        MENU_ITEM(function, MSG_FIRMWARE, lcd_firmware_menu);
+        MENU_ITEM(submenu, MSG_FIRMWARE, lcd_firmware_menu);
     }
     
     END_MENU();
@@ -761,29 +761,8 @@ static void lcd_move_menu()
     END_MENU();
 }
 
-static void lcd_print_load_message()
+static void lcd_load_menu_EXT1_ABS_go()
 {
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print(MSG_LOAD_TEXT0);
-  lcd.setCursor(0, 1);
-  lcd.print(MSG_LOAD_TEXT1);
-  lcd.setCursor(0, 2);
-  lcd.print(MSG_LOAD_TEXT2);
-  lcd.setCursor(0, 3);
-  lcd.print(MSG_LOAD_TEXT3);
-  delay(1000);
-  while(1){
-    if((READ(BTN_ENC)==0) || (READ(BTN_EN1)==0) || (READ(BTN_EN2)==0))
-      {
-        break;
-      }
-  }
-}
-
-static void lcd_load_menu_EXT1_ABS()
-{
-  lcd_print_load_message();
   lcd_return_to_status();
   enquecommand_P(PSTR("M117 Preparing..."));
   enquecommand_P(PSTR("M106 S165"));
@@ -811,9 +790,18 @@ static void lcd_load_menu_EXT1_ABS()
   enquecommand_P(PSTR("M117 Vertex is ready     "));
 }
 
-static void lcd_load_menu_EXT1_PLA()
+static void lcd_load_menu_EXT1_ABS()
 {
-  lcd_print_load_message();
+  START_MENU();
+  MENU_ITEM(function, MSG_LOAD_TEXT0, lcd_load_menu_EXT1_ABS_go);
+  MENU_ITEM(function, MSG_LOAD_TEXT1, lcd_load_menu_EXT1_ABS_go);
+  MENU_ITEM(function, MSG_LOAD_TEXT2, lcd_load_menu_EXT1_ABS_go);
+  MENU_ITEM(function, MSG_LOAD_TEXT3, lcd_load_menu_EXT1_ABS_go);
+  END_MENU();
+}
+
+static void lcd_load_menu_EXT1_PLA_go()
+{
   lcd_return_to_status();
   enquecommand_P(PSTR("M117 Preparing..."));
   enquecommand_P(PSTR("M106 S165"));
@@ -841,9 +829,18 @@ static void lcd_load_menu_EXT1_PLA()
   enquecommand_P(PSTR("M117 Vertex is ready     "));
 }
 
-static void lcd_load_menu_EXT2_ABS()
+static void lcd_load_menu_EXT1_PLA()
 {
-  lcd_print_load_message();
+  START_MENU();
+  MENU_ITEM(function, MSG_LOAD_TEXT0, lcd_load_menu_EXT1_PLA_go);
+  MENU_ITEM(function, MSG_LOAD_TEXT1, lcd_load_menu_EXT1_PLA_go);
+  MENU_ITEM(function, MSG_LOAD_TEXT2, lcd_load_menu_EXT1_PLA_go);
+  MENU_ITEM(function, MSG_LOAD_TEXT3, lcd_load_menu_EXT1_PLA_go);
+  END_MENU();
+}
+
+static void lcd_load_menu_EXT2_ABS_go()
+{
   lcd_return_to_status();
   enquecommand_P(PSTR("M117 Preparing..."));
   enquecommand_P(PSTR("M106 S165"));
@@ -871,9 +868,18 @@ static void lcd_load_menu_EXT2_ABS()
   enquecommand_P(PSTR("M117 Vertex is ready     "));
 }
 
-static void lcd_load_menu_EXT2_PLA()
+static void lcd_load_menu_EXT2_ABS()
+{
+  START_MENU();
+  MENU_ITEM(function, MSG_LOAD_TEXT0, lcd_load_menu_EXT2_ABS_go);
+  MENU_ITEM(function, MSG_LOAD_TEXT1, lcd_load_menu_EXT2_ABS_go);
+  MENU_ITEM(function, MSG_LOAD_TEXT2, lcd_load_menu_EXT2_ABS_go);
+  MENU_ITEM(function, MSG_LOAD_TEXT3, lcd_load_menu_EXT2_ABS_go);
+  END_MENU();
+}
+
+static void lcd_load_menu_EXT2_PLA_go()
 {  
-  lcd_print_load_message();
   lcd_return_to_status();
   enquecommand_P(PSTR("M117 Preparing..."));
   enquecommand_P(PSTR("M106 S165"));
@@ -899,6 +905,16 @@ static void lcd_load_menu_EXT2_PLA()
   enquecommand_P(PSTR("T0"));
   enquecommand_P(PSTR("M84"));
   enquecommand_P(PSTR("M117 Vertex is ready     "));
+}
+
+static void lcd_load_menu_EXT2_PLA()
+{
+  START_MENU();
+  MENU_ITEM(function, MSG_LOAD_TEXT0, lcd_load_menu_EXT2_PLA_go);
+  MENU_ITEM(function, MSG_LOAD_TEXT1, lcd_load_menu_EXT2_PLA_go);
+  MENU_ITEM(function, MSG_LOAD_TEXT2, lcd_load_menu_EXT2_PLA_go);
+  MENU_ITEM(function, MSG_LOAD_TEXT3, lcd_load_menu_EXT2_PLA_go);
+  END_MENU();
 }
 
 static void lcd_unload_menu_EXT1_ABS()
@@ -1021,8 +1037,8 @@ static void lcd_load_menu_EXT1()
 {
   START_MENU();  
   MENU_ITEM(back, MSG_LOAD_FILAMENT, lcd_load_menu);
-  MENU_ITEM(function, MSG_LOAD_ABS_EX1, lcd_load_menu_EXT1_ABS);
-  MENU_ITEM(function, MSG_LOAD_PLA_EX1, lcd_load_menu_EXT1_PLA);
+  MENU_ITEM(submenu, MSG_LOAD_ABS_EX1, lcd_load_menu_EXT1_ABS);
+  MENU_ITEM(submenu, MSG_LOAD_PLA_EX1, lcd_load_menu_EXT1_PLA);
   END_MENU();
 }
 
@@ -1030,8 +1046,8 @@ static void lcd_load_menu_EXT2()
 {
   START_MENU();  
   MENU_ITEM(back, MSG_LOAD_FILAMENT, lcd_load_menu);
-  MENU_ITEM(function, MSG_LOAD_ABS_EX2, lcd_load_menu_EXT2_ABS);
-  MENU_ITEM(function, MSG_LOAD_PLA_EX2, lcd_load_menu_EXT2_PLA);
+  MENU_ITEM(submenu, MSG_LOAD_ABS_EX2, lcd_load_menu_EXT2_ABS);
+  MENU_ITEM(submenu, MSG_LOAD_PLA_EX2, lcd_load_menu_EXT2_PLA);
   END_MENU();
 }
 
@@ -1466,16 +1482,12 @@ void lcd_firmwarescreen()
 
 void lcd_firmware_menu()
 {
-  lcd.clear();
-  lcd_firmwarescreen();
-  delay(1000);
-  while(1){
-    if((READ(BTN_ENC)==0) || (READ(BTN_EN1)==0) || (READ(BTN_EN2)==0))
-      {
-        break;
-      }
-  } 
-  lcd_return_to_status();
+  START_MENU();
+  MENU_ITEM(function, MSG_SPLASH_NAME_SMALL, lcd_return_to_status);
+  MENU_ITEM(function, MSG_SPLASH_FIRMWARE_SMALL, lcd_return_to_status);
+  MENU_ITEM(function, MSG_SPLASH_WEBSITE1_SMALL, lcd_return_to_status);
+  MENU_ITEM(function, MSG_SPLASH_WEBSITE2_SMALL, lcd_return_to_status);
+  END_MENU();
 }
 
 void lcd_splashscreen()

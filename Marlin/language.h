@@ -74,9 +74,14 @@
 // Please note these can be 20 characters!
 
         #define MSG_SPLASH_NAME " VERTEX  3D PRINTER"
-        #define MSG_SPLASH_FIRMWARE "M:1.0 V:1.1  HEADS:1"
+        #define MSG_SPLASH_FIRMWARE "M:1.0 V:1.4 HEADS:1"
         #define MSG_SPLASH_WEBSITE1 " vertex3dprinter.eu"
         #define MSG_SPLASH_WEBSITE2 "    velleman.eu"
+
+        #define MSG_SPLASH_NAME_SMALL "VERTEX 3D PRINTER"
+        #define MSG_SPLASH_FIRMWARE_SMALL "M:1.0 V:1.4 HDS:1"
+        #define MSG_SPLASH_WEBSITE1_SMALL "     K8400.eu"
+        #define MSG_SPLASH_WEBSITE2_SMALL "   velleman.eu"
 
 // LCD Menu Messages
 // Please note these are limited to 17 characters!
@@ -84,7 +89,7 @@
 	#define WELCOME_MSG MACHINE_NAME " is ready"
 	#define MSG_SD_INSERTED "Card inserted"
 	#define MSG_SD_REMOVED "Card removed"
-	#define MSG_MAIN "Main"
+    #define MSG_MAIN "Main menu"
 	#define MSG_AUTOSTART "Autostart"
 	#define MSG_DISABLE_STEPPERS "Disable motors"
 	#define MSG_AUTO_HOME "Auto home"
@@ -206,10 +211,10 @@
         #define MSG_UNLOAD_PLA_EX2 "Unload PLA left"
         #define MSG_EXTRUDER_1 "Right (EXT.1)"
         #define MSG_EXTRUDER_2 "Left (EXT.2)"
-        #define MSG_LOAD_TEXT0 "  Insert filament"
-        #define MSG_LOAD_TEXT1 "until 1.5cm filament"
-        #define MSG_LOAD_TEXT2 "  visible in tube."
-        #define MSG_LOAD_TEXT3 " Then press button."
+        #define MSG_LOAD_TEXT0 " Insert filament"
+        #define MSG_LOAD_TEXT1 " until 1.5cm is"
+        #define MSG_LOAD_TEXT2 " visible in tube"
+        #define MSG_LOAD_TEXT3 "Then press button"
         #define MSG_FIRMWARE "Firmware version"
 
 
@@ -2226,6 +2231,7 @@
 	#define MSG_BABYSTEP_Y "Babystap Y"
 	#define MSG_BABYSTEP_Z "Babystap Z"
 	#define MSG_ENDSTOP_ABORT "Endstop afbr."
+
 
 // Serial Console Messages
 
