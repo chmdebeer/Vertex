@@ -1058,7 +1058,7 @@ static void lcd_load_menu()
     START_MENU();
       MENU_ITEM(back, MSG_PREPARE, lcd_prepare_menu);
       MENU_ITEM(submenu, MSG_EXTRUDER_1, lcd_load_menu_EXT1);  
-      //MENU_ITEM(submenu, MSG_EXTRUDER_2, lcd_load_menu_EXT2);
+      MENU_ITEM(submenu, MSG_EXTRUDER_2, lcd_load_menu_EXT2);
     END_MENU();
 }
 
@@ -1067,7 +1067,7 @@ static void lcd_unload_menu()
     START_MENU(); 
       MENU_ITEM(back, MSG_PREPARE, lcd_prepare_menu);
       MENU_ITEM(submenu, MSG_EXTRUDER_1, lcd_unload_menu_EXT1);  
-      //MENU_ITEM(submenu, MSG_EXTRUDER_2, lcd_unload_menu_EXT2); 
+      MENU_ITEM(submenu, MSG_EXTRUDER_2, lcd_unload_menu_EXT2); 
     END_MENU();
 }
 
