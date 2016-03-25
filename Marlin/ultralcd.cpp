@@ -569,6 +569,7 @@ static void lcd_prepare_menu()
     START_MENU();
     MENU_ITEM(back, MSG_MAIN, lcd_main_menu);
     MENU_ITEM(gcode, MSG_AUTO_HOME, PSTR("G28"));
+    MENU_ITEM(submenu, MSG_MOVE_AXIS, lcd_move_menu);
     MENU_ITEM(submenu, MSG_LOAD_FILAMENT, lcd_load_menu);
     MENU_ITEM(submenu, MSG_UNLOAD_FILAMENT, lcd_unload_menu);
 #if TEMP_SENSOR_0 != 0
@@ -580,7 +581,7 @@ static void lcd_prepare_menu()
     MENU_ITEM(function, MSG_PREHEAT_ABS, lcd_preheat_abs0);
   #endif
 #endif
-MENU_ITEM(submenu, MSG_MOVE_AXIS, lcd_move_menu);
+
 #ifdef SDSUPPORT
     #ifdef MENU_ADDAUTOSTART
       MENU_ITEM(function, MSG_AUTOSTART, lcd_autostart_sd);
